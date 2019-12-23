@@ -98,7 +98,16 @@ proj4string(alla_lyor) <- CRS("+init=EPSG:3006")
 
 #Världens coolaste paket:
 plot.new()
-mapview(subset(alla_lyor, Namn == "FSAC145"| Namn =="FSAC143"), color = "red", label=alla_lyor$Namn, layer.name = "Udda lyor", map.types = "OpenTopoMap") +
+karta<-mapview(subset(alla_lyor, Namn == "FSAC145"| Namn =="FSAC143"), color = "red", label=alla_lyor$Namn, layer.name = "Udda lyor", map.types = "OpenTopoMap") +
   mapview(Vindellyor, label=Vindellyor$Namn) #label gör att lynamn syns när man för musen över featuren i kartan
+  
 
-?mapview
+karta
+#Printar en interaktiv HTML-karta och en kartbild av de udda lyorna och vindellyorna
+mapshot(karta, url = paste0(getwd(), "/map.html"),
+        file = paste0(getwd(), "/karta.png"))
+
+
+write_xlsx(lyor_lång_klar, path = "Excelfiler UT/AIC kullar Vindelfjällen 2000-2017.xlsx")
+
+
