@@ -32,14 +32,14 @@ Sys.setlocale(locale='en_US.UTF-8');
 
 
 
-Vindellyor <- read_xlsx(path = "lyor/Lyor Vindelfjällen Sweref riktig.xlsx") #läser in filen lybuffer.shp
+Vindellyor <- read_xlsx(path = "lyor/Lyor Vindelfjällen Sweref riktig.xlsx") 
 View(Vindellyor) #åäö funkar
 coordinates(Vindellyor) <- c("E", "N")
 proj4string(Vindellyor) <- CRS("+init=EPSG:3006")
 summary(Vindellyor) #sweref och projected
 plot(Vindellyor)
 
-hej
+
 
 
 Vindellyor_buffer <- gBuffer(Vindellyor, width = 1500,  byid = TRUE) # gör en 1500 m buffer runt lyor. byid = TRUE gör att det blir en buffer runt varje lya, inte en enda stor

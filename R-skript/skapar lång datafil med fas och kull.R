@@ -96,9 +96,13 @@ alla_lyor<-read_xlsx(path = "lyor/Lyor Sverige Garmin.xlsx")
 coordinates(alla_lyor) <- c("X", "Y")
 proj4string(alla_lyor) <- CRS("+init=EPSG:3006")
 
+coordinates(Vindellyor) <- c("E", "N")
+proj4string(Vindellyor) <- CRS("+init=EPSG:3006")
+
 #Världens coolaste paket:
 plot.new()
-karta<-mapview(subset(alla_lyor, Namn == "FSAC145"| Namn =="FSAC143"), color = "red", label=alla_lyor$Namn, layer.name = "Udda lyor", map.types = "OpenTopoMap") +
+karta<-mapview(subset(alla_lyor, Namn == "FSAC145"| Namn =="FSAC143"), 
+               color = "red", label= c("FSAC145", "FSAC143"), layer.name = "Udda lyor", map.types = "OpenTopoMap")+
   mapview(Vindellyor, label=Vindellyor$Namn) #label gör att lynamn syns när man för musen över featuren i kartan
   
 
